@@ -1,7 +1,7 @@
-package com.cmput301t14.mooditude;
+package com.ece492T5.smartGesture;
 
-import com.cmput301t14.mooditude.models.FollowRequestMessage;
-import com.cmput301t14.mooditude.models.TextMessage;
+import com.ece492T5.smartGesture.models.FollowRequestMessage;
+import com.ece492T5.smartGesture.models.TextMessage;
 import com.google.firebase.Timestamp;
 
 import org.junit.Test;

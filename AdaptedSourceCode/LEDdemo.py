@@ -1,3 +1,8 @@
+
+#Author: Shixiong Gao; Xianda Xu; Ye Wang; Xiaoyu Liu #
+#Date: 2020-01-23 #
+
+
 import RPi.GPIO as GPIO
 import time
 from time import sleep     # Import the sleep function from the time module
