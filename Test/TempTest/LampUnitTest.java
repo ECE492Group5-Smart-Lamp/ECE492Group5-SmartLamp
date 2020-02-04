@@ -2,7 +2,7 @@ package com.ece492T5.smartlamp;
 
 import android.graphics.Color;
 
-import com.cmput301t14.mooditude.models.Mood;
+import com.ece492T5.smartGesture;.models.Mood;
 
 import org.junit.Before;
 import org.junit.Test;
