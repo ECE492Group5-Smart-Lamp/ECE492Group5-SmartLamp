@@ -1,3 +1,15 @@
+/**
+ * Authors: Shixiong Gao, Xiaoyu Liu, Ye Wang, Xianda Xu
+ * Date: Jan. 30, 2020
+ */
+
+/**
+ * If user already has an account, he/she can
+ * go to the SignIn Activity directly to log in.
+ * There are two edit text fields that requires
+ * user to enter the user email and password.
+ */
+
 package com.example.smartlamp;
 
 import androidx.annotation.NonNull;
@@ -16,14 +28,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-
-
-/**
- * If user already has an account, he/she can
- * go to the SignIn Activity directly to log in.
- * There are two edit text fields that requires
- * user to enter the user email and password.
- */
 public class SignInActivity extends AppCompatActivity {
 
     private EditText emailEditText,passwordEditText;

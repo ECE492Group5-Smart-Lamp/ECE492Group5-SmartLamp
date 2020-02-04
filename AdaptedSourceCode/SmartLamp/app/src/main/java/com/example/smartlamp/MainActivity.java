@@ -1,3 +1,13 @@
+/**
+ * Authors: Shixiong Gao, Xiaoyu Liu, Ye Wang, Xianda Xu
+ * Date: Jan. 30, 2020
+ */
+
+/**
+ * This activity is the app start-up interface. Users can
+ * go to SignInActivity or RegisterActivity.
+ */
+
 package com.example.smartlamp;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -5,10 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-/**
- * This activity is the app start-up interface. Users can
- * go to SignInActivity or RegisterActivity.
- */
+
 
 public class MainActivity extends AppCompatActivity {
     @Override
