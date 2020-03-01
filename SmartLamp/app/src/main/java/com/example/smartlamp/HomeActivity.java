@@ -3,17 +3,10 @@ package com.example.smartlamp;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -25,13 +18,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -52,15 +41,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private boolean mEnablingBT;
     private boolean flagBT = false;
 
-    /**
-     * The tag we use when logging, so that our messages can be distinguished
-     * from other messages in the log. Public because it's used by several
-     * classes.
-     */
+    //logcat tag
     public static final String LOG_TAG = "BlueTooth";
     // Message types sent from the BluetoothReadService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
-    public static final int MESSAGE_READ = 2;
     public static final int MESSAGE_WRITE = 3;
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
@@ -72,12 +56,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     // Key names received from the BluetoothChatService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
-    /**
-     * Our main view. Displays the emulated terminal screen.
-     */
+
+    // our main view
     private View homeView;
-
-
+    //the item in homeactivity xml
     private ImageView lightOff;
     private ImageView lightOn;
     private SeekBar brightnessSeekBar;
@@ -85,12 +67,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private SeekBar greenSeekBar;
     private SeekBar blueSeekBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //The input method manager  is expressed as the client-side API here
+        // which exists in each application context and communicates with a global system service that manages the interaction across all processes.
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        //set a bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             finishDialogNoBluetooth();
@@ -107,11 +91,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         greenSeekBar =(SeekBar)findViewById(R.id.seekBar_green);
         blueSeekBar =(SeekBar)findViewById(R.id.seekBar_blue);
 
-
+        //bluetooth serive
         mSerialService = new BluetoothSerialService(this, mHandlerBT, homeView);
-
-
-
 
         // perform seek bar change listener event used for getting the progress value
         brightnessSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -141,82 +122,85 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        // perform seek bar change listener event used for getting the progress value
-        redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChangedValue = 0;
+        //actived only under connected via bluetooth
+        if(flagBT == true) {
+            // perform seek bar change listener event used for getting the progress value
+            redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                int progressChangedValue = 0;
 
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChangedValue = progress;
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                String str0 = String.valueOf(progressChangedValue);
-                String str = "red:" + str0;
-                byte[] byteArr = new byte[0];
-                try {
-                    byteArr = str.getBytes("UTF-8");
-                    send(byteArr);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    progressChangedValue = progress;
                 }
-            }
-        });
 
-
-        // perform seek bar change listener event used for getting the progress value
-        greenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChangedValue = 0;
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChangedValue = progress;
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                String str0 = String.valueOf(progressChangedValue);
-                String str = "green:" + str0;
-                byte[] byteArr = new byte[0];
-                try {
-                    byteArr = str.getBytes("UTF-8");
-                    send(byteArr);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    // TODO Auto-generated method stub
                 }
-            }
-        });
 
-
-        // perform seek bar change listener event used for getting the progress value
-        blueSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChangedValue = 0;
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChangedValue = progress;
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                String str0 = String.valueOf(progressChangedValue);
-                String str = "blue:" + str0;
-                byte[] byteArr = new byte[0];
-                try {
-                    byteArr = str.getBytes("UTF-8");
-                    send(byteArr);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    String str0 = String.valueOf(progressChangedValue);
+                    String str = "red:" + str0;
+                    byte[] byteArr = new byte[0];
+                    try {
+                        byteArr = str.getBytes("UTF-8");
+                        send(byteArr);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+
+
+            // perform seek bar change listener event used for getting the progress value
+            greenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                int progressChangedValue = 0;
+
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    progressChangedValue = progress;
+                }
+
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    // TODO Auto-generated method stub
+                }
+
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    String str0 = String.valueOf(progressChangedValue);
+                    String str = "green:" + str0;
+                    byte[] byteArr = new byte[0];
+                    try {
+                        byteArr = str.getBytes("UTF-8");
+                        send(byteArr);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+            // perform seek bar change listener event used for getting the progress value
+            blueSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                int progressChangedValue = 0;
+
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    progressChangedValue = progress;
+                }
+
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    // TODO Auto-generated method stub
+                }
+
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    String str0 = String.valueOf(progressChangedValue);
+                    String str = "blue:" + str0;
+                    byte[] byteArr = new byte[0];
+                    try {
+                        byteArr = str.getBytes("UTF-8");
+                        send(byteArr);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
 
@@ -240,6 +224,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //click the bluetooth image
             case R.id.set_bluetooth:{
                 Log.i("bt", "btclick");
 
@@ -256,10 +241,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             }
-
             break;
+            //disable this image, and change image to light on; also send information via bluetooth
             case R.id.light_off:
-                //if(flagBT == true){
+                if(flagBT == true){
                     lightOff.setVisibility(View.INVISIBLE);
                     lightOn.setVisibility(View.VISIBLE);
                     String str = "off";
@@ -270,12 +255,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-               // }
-
-
+                }
                 break;
+            //disable this image, and change image to light off; also send information via bluetooth
             case R.id.light_on:
-               // if(flagBT == true){
+               if(flagBT == true){
                     lightOff.setVisibility(View.VISIBLE);
                     lightOn.setVisibility(View.INVISIBLE);
                     String str2 = "on";
@@ -286,24 +270,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                //}
-
+                }
                 break;
+            //click the time image and go to time activity
             case R.id.main_set_time: {
                 Log.i("set", "settime");
                 Intent intent = new Intent(HomeActivity.this, TimingActivity.class);
                 startActivity(intent);
             }
-
             break;
 
         }
 
     }
-
-
-
-
 
     @Override
     public void onStart() {
@@ -404,12 +383,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                             mInputManager.showSoftInput(homeView, InputMethodManager.SHOW_IMPLICIT);
 
-                            //mTitle.setText( R.string.title_connected_to );
-                            //mTitle.append(" " + mConnectedDeviceName);
                             break;
 
                         case BluetoothSerialService.STATE_CONNECTING:
-                            //mTitle.setText(R.string.title_connecting);
                             break;
 
                         case BluetoothSerialService.STATE_LISTEN:
@@ -421,7 +397,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                             mInputManager.hideSoftInputFromWindow(homeView.getWindowToken(), 0);
 
-                           // mTitle.setText(R.string.title_not_connected);
 
                             break;
                     }
@@ -453,30 +428,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-    /*
-     * byte[] buffer = new byte[1];
-     * buffer[0] = (byte)letter;
-     * send( buffer );
-     * [//mSerialService.write(buffer)]
-     * */
+    //send via bluetooth using bluetooth serial service
     public void send(byte[] out) {
-
-//        if ( out.length == 1 ) {
-//
-//            if ( out[0] == 0x0D ) {
-//                out = handleEndOfLineChars( mOutgoingEoL_0D );
-//            }
-//            else {
-//                if ( out[0] == 0x0A ) {
-//                    out = handleEndOfLineChars( mOutgoingEoL_0A );
-//                }
-//            }
-//        }
 
         if ( out.length > 0 ) {
             mSerialService.write( out );
         }
     }
+    //after returning from another activity
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(DEBUG) Log.d(LOG_TAG, "onActivityResult " + resultCode);
         switch (requestCode) {
@@ -487,7 +446,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the device MAC address
                     String address = data.getExtras().getString(BT_DeviceList.EXTRA_DEVICE_ADDRESS);
-                    Log.i("hhh", address);
+                    Log.i("BT address", address);
                     // Get the BLuetoothDevice object
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
@@ -499,7 +458,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 // When the request to enable Bluetooth returns
                 if (resultCode != Activity.RESULT_OK) {
                     Log.d(LOG_TAG, "BT not enabled");
-
                    // finishDialogNoBluetooth();
                 }
         }

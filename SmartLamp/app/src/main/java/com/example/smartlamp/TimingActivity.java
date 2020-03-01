@@ -36,9 +36,10 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         initView();
     }
 
+    //draw the time activity view
     private void initView() {
         SharedPreferences sharedPreferences = getSharedPreferences("timing", MODE_PRIVATE);
-
+        //get all item from activity
         ImageView back = findViewById(R.id.setting_back);
         TextView save = findViewById(R.id.save);
         Switch aSwitch = findViewById(R.id.switch_timing);
@@ -53,11 +54,12 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+        //set listener
         back.setOnClickListener(this);
         save.setOnClickListener(this);
         startTime.setOnClickListener(this);
         endTime.setOnClickListener(this);
-
+        //check for state
         if (sharedPreferences.getBoolean("checkState", false)) {
             aSwitch.setChecked(true);
             switchOpen = true;
@@ -78,21 +80,22 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //return to home activity
             case R.id.setting_back: {
 
             }
             break;
-
+            //save the change
             case R.id.save: {
 
             }
             break;
-
+            //set start time
             case R.id.start_time: {
                 showStartTimePickerDialog();
             }
             break;
-
+            //set end time
             case R.id.end_time: {
                 showEndTimePickerDialog();
             }
@@ -100,7 +103,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         }
 
     }
-
+    //draw clock dialog
     private void showStartTimePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -110,8 +113,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
             }
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
     }
-
-
+    //draw clock dialog
     private void showEndTimePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -124,7 +126,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
 
     }
-
+    //set time
     private void setStartTimeTv(int hourOfDay, int minute) {
 
         if (hourOfDay >= 12) {
@@ -132,7 +134,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             startAPM.setText("AM");
         }
-
+        //hours and minutes
         String newH = null;
         String newM = null;
         if (hourOfDay < 10) {
@@ -145,7 +147,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             newM = minute + "";
         }
-
+        //hours to am or pm
         String tvH = null;
         if (hourOfDay > 12) {
             tvH = (hourOfDay - 12) + "";
@@ -165,7 +167,7 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         time[1] = newM;
     }
 
-
+    //similar as setStartTimeTv
     private void setEndTimeTv(int hourOfDay, int minute) {
         if (hourOfDay >= 12) {
             endAPM.setText("PM");
