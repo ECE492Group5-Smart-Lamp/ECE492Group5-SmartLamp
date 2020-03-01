@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_Time = 3;
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -66,6 +67,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private SeekBar redSeekBar;
     private SeekBar greenSeekBar;
     private SeekBar blueSeekBar;
+    private String[] time = {"0", "0", "0", "0"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,7 +278,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_set_time: {
                 Log.i("set", "settime");
                 Intent intent = new Intent(HomeActivity.this, TimingActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_Time);
             }
             break;
 
@@ -460,6 +462,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d(LOG_TAG, "BT not enabled");
                    // finishDialogNoBluetooth();
                 }
+                break;
+                
+            case REQUEST_Time:
+                // When the request to enable Bluetooth returns
+                if (resultCode != Activity.RESULT_OK) {
+                    Log.i("time", "time back");
+                    if (data.hasExtra("time")){
+                        time = data.getExtras().getStringArray("time");
+                        Log.i("time", String.valueOf(time));
+                    }
+
+                }
+                break;
         }
     }
 

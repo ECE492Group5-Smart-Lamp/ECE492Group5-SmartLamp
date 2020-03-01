@@ -2,6 +2,7 @@ package com.example.smartlamp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.TimePickerDialog;
@@ -82,6 +83,12 @@ public class TimingActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             //return to home activity
             case R.id.setting_back: {
+
+                Intent intent = new Intent();
+                intent.putExtra("time", time);
+                // Activity finished return ok, return the data
+                setResult(RESULT_OK, intent);
+                finish();
 
             }
             break;
