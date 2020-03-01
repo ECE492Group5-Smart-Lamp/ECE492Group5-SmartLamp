@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.HomeActivity"
+    android:background="@color/colorPrimary"
+    android:id="@+id/home">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_rl"
+        android:layout_width="match_parent"
+        android:layout_height="38dp">
+
+        <ImageView
+            android:id="@+id/main_set_time"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/main_set_time"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/set_bluetooth"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/stat_sys_data_bluetooth"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/brightness_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+
+        <SeekBar
+            android:splitTrack="false"
+            android:id="@+id/seekBar_bright"
+            style="@style/seek_bar_style"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:max="10"
+            android:progress="1"
+        />
+
+        <TextView
+            style="@style/function_tv"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:text="Brightness" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/red_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp">
+
+
+        <SeekBar
+            android:splitTrack="false"
+            android:id="@+id/seekBar_red"
+            style="@style/seek_bar_style"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:max="255"
+            android:progress="20"
+            />
+
+        <TextView
+            style="@style/function_tv"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Red" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/green_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp">
+
+
+        <SeekBar
+            android:splitTrack="false"
+            android:id="@+id/seekBar_green"
+            style="@style/seek_bar_style"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:max="255"
+            android:progress="20"
+            />
+
+        <TextView
+            style="@style/function_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Green" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/blue_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp">
+
+
+        <SeekBar
+            android:splitTrack="false"
+            android:id="@+id/seekBar_blue"
+            style="@style/seek_bar_style"
+            android:layout_marginStart="75dp"
+            android:layout_marginLeft="75dp"
+            android:max="255"
+            android:progress="20"
+            />
+
+        <TextView
+            style="@style/function_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Blue" />
+    </RelativeLayout>
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="100dp"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/light_off"
+            android:visibility="gone"
+            android:src="@drawable/light_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/light_on"
+            android:src="@drawable/light_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
