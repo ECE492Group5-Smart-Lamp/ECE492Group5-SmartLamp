@@ -1,3 +1,8 @@
+# creation date: Feb 28 2020
+# original author: Gus, https://pimylifeup.com/raspberry-pi-light-sensor/
+# author of modification: group 5
+# content of the file: brightness dectection using a photoresistor
+
 import RPi.GPIO as GPIO
 import time
 
