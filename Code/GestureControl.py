@@ -19,7 +19,7 @@ def set_LED(gesture, value):
     global initLED
     global on
     
-    
+    # swipe option
     if gesture == 'flick':
         if on == 1:
             if value == 'west - east':
@@ -39,7 +39,7 @@ def set_LED(gesture, value):
                 
                 initColor.setColor('Pink')
                 initLED.displayLight(initColor, brightness_level)
-    
+    # air wheel option
     elif gesture == 'airwheel':
         if on == 1:
             delay = 0.3
@@ -49,13 +49,13 @@ def set_LED(gesture, value):
                     brightness_level = 1
                 initLED.displayLight(initColor, brightness_level)
                 time.sleep(delay)
-            else:
+            else: #ccw
                 brightness_level = brightness_level - 0.06
                 if brightness_level <= 0.02:
                     brightness_level = 0.02
                 initLED.displayLight(initColor, brightness_level)
                 time.sleep(delay)
-            
+    # turn on and turn off        
     elif gesture == 'doubletap':
         if on == 1:
             on = 0
