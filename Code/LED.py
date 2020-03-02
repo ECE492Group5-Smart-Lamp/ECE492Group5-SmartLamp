@@ -9,24 +9,28 @@ pixels = neopixel.NeoPixel(board.D18, 12,auto_write = False)
 
 class LED:
     def __init__(self, brightness_level):
-        
+        # level of brightness
         self.brighteness_level = brightness_level
-        
+    
+    # fill the LED with desired RGB component
     def displayLight(self,color, brightness_level):
     
         pixels.fill((int(brightness_level*color.red),int(brightness_level*color.green),int(brightness_level*color.blue)))
         pixels.show()
         
+    # fill (0,0,0) which is black to the led to turn off it
     def turnoff(self):
         pixels.fill((0,0,0))
         pixels.show()
         
 class Color:
+    # white
     def __init__(self):
         self.red = 255
         self.green = 255
         self.blue = 255
         
+    # different color options    
     def setColor(self,color_num):
         if color_num == "White":
             self.red = 255
@@ -44,7 +48,8 @@ class Color:
             self.red = 0
             self.green = 255
             self.blue = 127
-    
+            
+    # optimized color option
     def setSelfColor(self, redNum, greenNum, blueNum):
         self.red = redNum
         self.green = greenNum
