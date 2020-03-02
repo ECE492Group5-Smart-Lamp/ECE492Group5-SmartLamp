@@ -1,3 +1,7 @@
+# creation date: Feb 15 2020
+# author: group 5
+# contents of the file: source code used for Bluetooth connection between Raspberry Pi and smartphone
+
 import bluetooth
 import LED
 
