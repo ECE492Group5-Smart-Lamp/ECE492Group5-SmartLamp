@@ -1,3 +1,7 @@
+# creation date: Feb 14 2020
+# author: group 5
+# contents of the file: test code for controlling the LED on Raspberry pi
+
 import board
 import neopixel
 import time
