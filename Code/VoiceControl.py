@@ -1,5 +1,6 @@
 # creation date: Feb 13 2020
-# author: group 5
+# original author: Snowboy
+# author of modification: group 5
 # contents of the file: source code used for voice control option
 
 import snowboydecoder
