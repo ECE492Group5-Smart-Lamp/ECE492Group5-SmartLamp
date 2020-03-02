@@ -1,3 +1,7 @@
+# creation date: Feb 11 2020
+# author: group 5
+# contents of the file: source code used for the gesture control option
+
 #!/usr/bin/env python
 import signal
 import flicklib
