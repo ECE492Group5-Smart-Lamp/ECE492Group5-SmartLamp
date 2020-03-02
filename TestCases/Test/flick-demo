@@ -1,3 +1,7 @@
+# creation date: N/A
+# author: Flick Zero
+# contents of the file: build-in test case provided by Flick ZERO
+
 #!/usr/bin/env python
 
 import signal
