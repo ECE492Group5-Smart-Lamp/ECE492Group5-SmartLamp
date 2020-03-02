@@ -4,7 +4,10 @@
 # Do not make changes to this file unless you know what you are doing--modify
 # the SWIG interface file instead.
 
-
+# creation date: Feb 28 2020
+# original author: Snowboy
+# author of modification: group 5
+# contents of the file: source code used to detect audio for the voice control
 
 
 
