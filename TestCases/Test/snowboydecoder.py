@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+# creation date: Feb 28 2020
+# original author: Snowboy
+# author of modification: group 5
+# contents of the file: source code used to decode audio file for the voice control
+
 import collections
 import pyaudio
 import snowboydetect
