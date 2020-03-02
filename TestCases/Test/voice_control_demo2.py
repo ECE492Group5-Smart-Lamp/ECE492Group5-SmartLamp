@@ -1,3 +1,7 @@
+# creation date: Feb 29 2020
+# author: group 5
+# contents of the file: test code for voice control option
+
 import snowboydecoder
 import sys
 import signal
