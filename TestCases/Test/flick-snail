@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-
+# creattion time: N/A
 # Author: Russel Davis @ukscone
+# contents of the file: A build-in test case provided by the Flick ZERO
 
 import flicklib
 import time
