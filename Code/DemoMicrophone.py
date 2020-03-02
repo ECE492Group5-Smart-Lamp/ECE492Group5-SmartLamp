@@ -1,3 +1,7 @@
+# creation date: Feb 16 2020
+# author: group 5
+# contents of the file: source code of voice recognition via online method
+
 import speech_recognition as sr
 import LED
 
