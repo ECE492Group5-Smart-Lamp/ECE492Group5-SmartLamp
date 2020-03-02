@@ -1,3 +1,7 @@
+# creation date: Feb 20 2020
+# author: group 5
+# contents of the file: test code for BlueTooth connection
+
 import bluetooth
 import TestLED
 
