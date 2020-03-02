@@ -1,3 +1,7 @@
+# creation date: Feb 14 2020
+# author: group 5
+# contents of the file: source code used to control the LED on Raspberry Pi
+
 import board
 import neopixel
 import time
