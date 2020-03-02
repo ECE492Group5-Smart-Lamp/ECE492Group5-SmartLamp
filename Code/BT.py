@@ -5,6 +5,7 @@
 import bluetooth
 import LED
 
+# build connection
 server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 port = 1
 server_sock.bind(("",port))
@@ -19,6 +20,7 @@ while True:
     User1 = TestLED.LED(brightness_level)
     print ("Received \"%s\" through Bluetooth" % recvdata)
     
+    # msg received selection
     if recvStr == "on":
         User1.displayLight(initColor, brightness_level)
         print("on")
