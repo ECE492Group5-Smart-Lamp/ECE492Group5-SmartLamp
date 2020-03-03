@@ -43,7 +43,7 @@ class RingBuffer(object):
         self._buf.clear()
         return tmp
 
-
+# play the audio file after the lamp receive the commands
 def play_audio_file(fname=DETECT_DING):
     """Simple callback function to play a wave file. By default it plays
     a Ding sound.
@@ -65,20 +65,19 @@ def play_audio_file(fname=DETECT_DING):
     stream_out.close()
     audio.terminate()
 
+# turn on the lamp
 def turn_on():
     User.displayLight(initColor, brightness_level)
 
+# turn off the lamp
 def turn_off():
     User.turnoff()
-
+    
+# change the color of the lamp
 def change_color(colorString):
     init_color.setColor(colorString)
     User.displayLight(initColor,brightness_level)
         
-    
-    
-    
-
 class HotwordDetector(object):
     """
     Snowboy decoder to detect whether a keyword specified by `decoder_model`
