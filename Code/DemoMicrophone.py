@@ -12,6 +12,7 @@ def init():
     r = sr.Recognizer()
     r.energy_threshold = 3000
     while True: 
+        # Connect with microphone and get the audio file
         with sr.Microphone(sample_rate = sample_rate, chunk_size = chunk_size) as source:
             r.adjust_for_ambient_noise(source)
         
@@ -27,6 +28,7 @@ def init():
             
                 triggerWordIndex = spokenText.lower().find("hello")
                 
+                # Get the trigger word
                 if triggerWordIndex > -1:
                     
                     print("Hello Master")
@@ -39,6 +41,7 @@ def init():
                     
                     initLED.displayLight(initColor, brightness_level)
                     
+                    # Command words
                     while True:
                         r.adjust_for_ambient_noise(source)
         
