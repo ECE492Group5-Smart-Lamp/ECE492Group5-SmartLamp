@@ -96,12 +96,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         //bluetooth serive
         mSerialService = new BluetoothSerialService(this, mHandlerBT, homeView);
 
+
         // perform seek bar change listener event used for getting the progress value
         brightnessSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressChangedValue = 0;
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
+
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -109,9 +111,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                progressChangedValue = (int) progressChangedValue/10;
                 String str0 = String.valueOf(progressChangedValue);
                 String str = "brightness:" + str0;
+                Log.i("send light", str0);
                 byte[] byteArr = new byte[0];
                 try {
                     byteArr = str.getBytes("UTF-8");
@@ -125,7 +127,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //actived only under connected via bluetooth
-        if(flagBT == true) {
+       // if(flagBT == true) {
             // perform seek bar change listener event used for getting the progress value
             redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 int progressChangedValue = 0;
@@ -141,6 +143,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     String str0 = String.valueOf(progressChangedValue);
                     String str = "red:" + str0;
+                    Log.i("send red", str0);
                     byte[] byteArr = new byte[0];
                     try {
                         byteArr = str.getBytes("UTF-8");
@@ -167,6 +170,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     String str0 = String.valueOf(progressChangedValue);
                     String str = "green:" + str0;
+                    Log.i("send green", str0);
                     byte[] byteArr = new byte[0];
                     try {
                         byteArr = str.getBytes("UTF-8");
@@ -193,6 +197,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     String str0 = String.valueOf(progressChangedValue);
                     String str = "blue:" + str0;
+                    Log.i("send blue", str0);
                     byte[] byteArr = new byte[0];
                     try {
                         byteArr = str.getBytes("UTF-8");
@@ -202,7 +207,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
-        }
+        //}
     }
 
 
@@ -234,10 +239,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     // Launch the DeviceListActivity to see devices and do scan
                     Intent serverIntent = new Intent(this, BT_DeviceList.class);
                     flagBT = true;
+                    Log.i("flagBT", String.valueOf(flagBT));
                     startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 }
                 else {
                     flagBT = false;
+                    Log.i("flagBT", String.valueOf(flagBT));
                     mSerialService.stop();
                     mSerialService.start();
 
